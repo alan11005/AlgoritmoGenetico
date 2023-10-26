@@ -1,4 +1,4 @@
-import GenotipoMochila as genotipo
+import classGenotipo as genotipo
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -280,9 +280,12 @@ class Algoritmo:
             
         column_names = ["Fenotipo", "Utilidad", "Peso", "on-line", "off-line"]
         df = pd.DataFrame(historial, columns=column_names)
-        print("\n",df)
+        print('\n', df)
         plt.ioff()
         plt.show()
+        nombre_archivo = 'mi_dataframe.xlsx'
+        df.to_excel(nombre_archivo, index=False)
+        print(f"Se ha exportado el DataFrame a {nombre_archivo}")
         
 def genTamaños(max, min, n, arrTamaños, arrXmax, arrXmin, arrNdecimales):
     tamaño = math.log2(1 + (max - min) * 10**n) #Calcula el tamaño de cada gen
@@ -305,22 +308,24 @@ def genNumTamaños(array):
 # self, metodo, Pcruce, Pmutacion, elitismo, iteraciones
 
 metodo = 1 # 0 = Ruleta de otro modo torneo
-Pcruce = 0.85
-Pmutacion = 0.12
-elitismo = False
-restriccion = np.array([5, 7, 8, 10])
-utilidad =    np.array([10, 15, 7, 8])
-limite = 60
-iteraciones = 10
+Pcruce = 0.98
+Pmutacion = 0.10
+elitismo = True
+restriccion = np.array([41, 28, 33, 32])
+utilidad =    np.array([409, 171, 200, 208])
+limite = 154
+iteraciones = 1000
 arrTamaños = np.array([])
 arrXmax = np.array([])
 arrXmin  = np.array([])
 arrNdecimales = np.array([])
                                                         #Xmax, Xmin, NumDecimales
-arrTamaños, arrXmax, arrXmin, arrNdecimales = genTamaños(2,    0,    0, arrTamaños, arrXmax, arrXmin, arrNdecimales)
-arrTamaños, arrXmax, arrXmin, arrNdecimales = genTamaños(2,    0,    0, arrTamaños, arrXmax, arrXmin, arrNdecimales)
-arrTamaños, arrXmax, arrXmin, arrNdecimales = genTamaños(2,    0,    0, arrTamaños, arrXmax, arrXmin, arrNdecimales)
-arrTamaños, arrXmax, arrXmin, arrNdecimales = genTamaños(2,    0,    0, arrTamaños, arrXmax, arrXmin, arrNdecimales)
+arrTamaños, arrXmax, arrXmin, arrNdecimales = genTamaños(1,    0,    0, arrTamaños, arrXmax, arrXmin, arrNdecimales)
+arrTamaños, arrXmax, arrXmin, arrNdecimales = genTamaños(3,    0,    0, arrTamaños, arrXmax, arrXmin, arrNdecimales)
+arrTamaños, arrXmax, arrXmin, arrNdecimales = genTamaños(3,    0,    0, arrTamaños, arrXmax, arrXmin, arrNdecimales)
+arrTamaños, arrXmax, arrXmin, arrNdecimales = genTamaños(1,    0,    0, arrTamaños, arrXmax, arrXmin, arrNdecimales)
+
+#Parcial
 
 genes = len(arrTamaños) # Variables de decisión
 tamañoPoblacion = genNumTamaños(arrTamaños) * 2

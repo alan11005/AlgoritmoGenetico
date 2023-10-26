@@ -1,4 +1,4 @@
-import classGenotipo as genotipo
+import GenotipoMochila as genotipo
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
